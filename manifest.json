@@ -11,7 +11,7 @@
   },
   "default_locale": "en",
   "permissions": [
-    "https://www.pokernow.club/*;"
+    // "https://www.pokernow.club/*;"
   ],
   "content_scripts": [
     {
