@@ -5,9 +5,12 @@
 // });
 
 
-//example of using a message handler from the inject scripts
-chrome.extension.onMessage.addListener(
-  function(request, sender, sendResponse) {
-    chrome.pageAction.show(sender.tab.id);
-    sendResponse();
+// Set up listener port to process inbound messages from the content script.
+chrome.runtime.onConnect.addListener(function(port) {
+  port.onMessage.addListener(function(msg) {
+  	console.log("Received message: ");
+  	console.log(msg);
   });
+});
+
+console.log("background.js loaded");

@@ -1,9 +1,9 @@
 {
-  "name": "CHANGE THIS : Extension boilerplate",
+  "name": "Poker Now Odds Calculator",
   "version": "0.0.1",
   "manifest_version": 2,
-  "description": "This extension was created with the awesome extensionizr.com",
-  "homepage_url": "http://extensionizr.com",
+  "description": "This extension adds a pot odds calculator to the online PokerNow website",
+  "homepage_url": "https://www.pokernow.club",
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
@@ -15,12 +15,12 @@
     "persistent": true
   },
   "permissions": [
-    "https://www.pokernow.club/*"
+    "https://www.pokernow.club/*;"
   ],
   "content_scripts": [
     {
       "matches": [
-        "https://www.google.com/*"
+        "https://www.pokernow.club/games/*"
       ],
       "css": [
         "src/inject/inject.css"
@@ -28,9 +28,11 @@
     },
     {
       "matches": [
-        "https://www.google.com/*"
+        "https://www.pokernow.club/games/*"
       ],
+      "run_at": "document_idle",
       "js": [
+        "js/jquery-3.5.1.min.js",
         "src/inject/inject.js"
       ]
     }

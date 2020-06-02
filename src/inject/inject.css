@@ -1,3 +1,8 @@
-/**
- * Place your custom CSS styles here.
- **/
+.pot-odds-container {
+  position: absolute;
+  right: 10.4rem;
+  top: .25rem;
+  color: #777;
+  text-transform: uppercase;
+  font-size: .5rem;
+}
