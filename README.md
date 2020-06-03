@@ -1,6 +1,6 @@
-# Pot odds calculator for PokerClub.now
+# Pot odds calculator for Poker Now
 
-Have you ever found yourself playing poker on [Poker Club](www.pokerclub.now), and wishing you had realtime pot odds? Well, look no further. This Chrome Extension adds a real-time pot odds calculator to the display, showing pot odds for every decision (yours and other players).
+Have you ever found yourself playing poker on [Poker Now](https://www.pokernow.club), and wishing you had realtime pot odds? Well, look no further. This Chrome Extension adds a real-time pot odds calculator to the display, showing pot odds for every decision (yours and other players).
 
 ## "What are pot odds", you ask? 
 
