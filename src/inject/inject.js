@@ -15,6 +15,10 @@ var doSetup = function() {
   var html = "<div class='pot-odds-container'>Pot odds:&nbsp;<span class='pot-odds-value'>&mdash;</span></div>";
   jQuery(".table").prepend(jQuery(html));
 
+  // inject stack total UI box
+  var html = "<div class='chip-count-container'>Chip count:&nbsp;<span class='chip-count-value'>&mdash;</span></div>";
+  jQuery(".table").prepend(jQuery(html));
+
   // Initiate observers
   var targetNode = jQuery(".table")[0];
 
@@ -92,4 +96,9 @@ var updatePotOdds = function() {
     jQuery(".pot-odds-value").html(potOdds);
   }
 
+  // Display count of all chips on the table.
+  // TODO: refactor this into a separate function, which daws current values from global variables.
+  var stackTotals = jQuery(".table-player-stack").toArray().reduce((a,b)=> a+parseInt(b.innerText),0);
+  var chipCount = stackTotals + potTotal + currentBetsTotal;
+  jQuery(".chip-count-value").html(chipCount);
 };
