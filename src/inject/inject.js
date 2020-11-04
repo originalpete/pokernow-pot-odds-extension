@@ -1,9 +1,14 @@
+const DEBUG=false;
 
 // Timer to ensure the host page is complete before we jam our shiz
 var readyStateCheckInterval = setInterval(function() {
   if (document.readyState === "complete") {
     clearInterval(readyStateCheckInterval);
-    console.log("Beginning inject.js...");
+
+    if (DEBUG) {
+      console.log("Beginning inject.js...");  
+    }
+    
     setTimeout(function(){ doSetup(); }, 1000);
   }
 }, 10);
@@ -50,7 +55,9 @@ var doSetup = function() {
   // Start observing the target node for configured mutations
   observer.observe(targetNode, config);
 
-  console.log("...setup done.")
+  if (DEBUG) {
+    console.log("...setup done.");
+  }
 };
 
 // Do the main thing
@@ -74,26 +81,28 @@ var updatePotOdds = function() {
   var largestCurrentBet = Math.max(...currentBets);
 
   // Locate current player and extract bet size
-  var currentPlayer = jQuery(".decision-current").parent();
+  var currentPlayer = jQuery(".decision-current").first();
   var currentPlayerBetUI = currentPlayer.find("p.table-player-bet-value");
   var currentPlayerBet = 0 + (
     currentPlayerBetUI 
     && parseFloat(currentPlayerBetUI.text().replace(/check/i, "0") || 0)
   );
 
-  console.log("Pot: " + potTotal);
-  console.log("Current bet total: " + currentBetsTotal);
-  console.log("Largest current bet: " + largestCurrentBet);
-  console.log("Current player bet: " + currentPlayerBet);
-
   // Update pot odds display if the current bet is smaller than the biggest bet on the table
   if (largestCurrentBet > 0 && largestCurrentBet > currentPlayerBet) {
     var amountToWin = potTotal + currentBetsTotal;
     var callToMake = largestCurrentBet - currentPlayerBet;
-    var potOdds = (callToMake / amountToWin).toFixed(2);
+    var potOdds = '' + Math.round((callToMake / amountToWin * 100.00)) + '%';
     
-    console.log("Pot odds: " + potOdds);
     jQuery(".pot-odds-value").html(potOdds);
+  }
+
+  if (DEBUG) {
+    console.log("Pot: " + potTotal);
+    console.log("Current bet total: " + currentBetsTotal);
+    console.log("Largest current bet: " + largestCurrentBet);
+    console.log("Current player bet: " + currentPlayerBet);
+    console.log("Pot odds: " + potOdds);
   }
 
   // Display count of all chips on the table.
