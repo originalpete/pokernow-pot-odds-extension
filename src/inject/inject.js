@@ -92,7 +92,7 @@ var updatePotOdds = function() {
   if (largestCurrentBet > 0 && largestCurrentBet > currentPlayerBet) {
     var amountToWin = potTotal + currentBetsTotal;
     var callToMake = largestCurrentBet - currentPlayerBet;
-    var potOdds = '' + Math.round((callToMake / amountToWin * 100.00)) + '%';
+    var potOdds = '' + Math.round((callToMake / (amountToWin + callToMake) * 100.00)) + '%';
     
     jQuery(".pot-odds-value").html(potOdds);
   }
